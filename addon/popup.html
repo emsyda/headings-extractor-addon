@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            width: 300px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #output {
+            margin-top: 10px;
+            text-align: left;
+            overflow: auto;
+            max-height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Select Heading Levels:</h2>
+    <div>
+        <label><input type="checkbox" id="all" checked> All</label><br>
+        <label><input type="checkbox" class="level" value="H1" checked> H1</label><br>
+        <label><input type="checkbox" class="level" value="H2" checked> H2</label><br>
+        <label><input type="checkbox" class="level" value="H3" checked> H3</label><br>
+        <label><input type="checkbox" class="level" value="H4" checked> H4</label><br>
+        <label><input type="checkbox" class="level" value="H5" checked> H5</label><br>
+        <label><input type="checkbox" class="level" value="H6" checked> H6</label><br>
+    </div>
+    <button id="copy">Copy</button>
+    <!--<button id="copy" style="transition: background-color 1s;">Copy</button>-->
+    <div id="output"></div>
+    <script src="popup.js"></script>
+</body>
+
+</html>
