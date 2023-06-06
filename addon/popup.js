@@ -1,4 +1,4 @@
-// import { getBrowser } from './utils';
+// import { getBrowser } from './_utils';
 // `import` nor `require` didn't seem to work in Firefox nor Chrome. Will have to do repetitive code.
 function getBrowser() {
     if (typeof browser !== 'undefined') {
@@ -11,6 +11,7 @@ function getBrowser() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    //const refreshButton = document.getElementById('refresh');
     const copyButton = document.getElementById('copy');
     const outputDiv = document.getElementById('output');
 
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function updateDisplay() {
+    function updateDisplay(cb = null) {
         let checkedBoxes = Array.from(document.querySelectorAll('input[type=checkbox]:checked'));
         let checkedLevels = checkedBoxes.map(checkbox => checkbox.value);
 
@@ -49,11 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     outputText += '<p><strong>' + heading.level + ':</strong> ' + heading.text + '</p>';
                 }
                 outputDiv.innerHTML = outputText;
+                if (cb) {
+                    cb();
+                };
             });
         });
     }
 
-    copyButton.addEventListener('click', () => {
+    /*refreshButton.addEventListener('click', () => {
+        updateDisplay();
+    });*/
+
+    function execCopy() {
         let lines = outputDiv.innerText.split('\n');
         lines = lines.map(line => line.replace(/H\d+: /, ''));
         let textToCopy = lines.join('\n');
@@ -72,6 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             copyButton.style.backgroundColor = '';
         }, 500);
+    }
+
+    copyButton.addEventListener('click', () => {
+        updateDisplay(execCopy);
     });
 
     // Run the update function initially when the popup is opened

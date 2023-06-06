@@ -8,7 +8,7 @@ function getBrowser() {
     }
 }
 
-
+// Get the content of the page, filter out the headings that were requested, and send them back to the popup script
 getBrowser().runtime.onMessage.addListener((request, sender, sendResponse) => {
     let headings = [];
     for (let level of request) {
